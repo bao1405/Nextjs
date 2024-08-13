@@ -1,6 +1,6 @@
 import React from 'react'
 
-const HomePage: React.FC = () => {
+const Page: React.FC = () => {
   return (
     <div>
         <header style={{width:"100%", backgroundColor:"red"}}>
@@ -11,4 +11,4 @@ const HomePage: React.FC = () => {
   )
 }
 
-export default HomePage;
+export default Page;

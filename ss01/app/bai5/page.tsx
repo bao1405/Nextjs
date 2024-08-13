@@ -1,6 +1,6 @@
 import React from 'react'
 
-const HomePage: React.FC = () =>  {
+const Page: React.FC = () =>  {
   return (
     <div>
         <button>Thêm</button>
@@ -10,4 +10,4 @@ const HomePage: React.FC = () =>  {
   )
 }
 
-export default HomePage;
+export default Page;
