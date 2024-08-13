@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCoffee, faEye, faCamera } from '@fortawesome/free-solid-svg-icons';
 
-const HomePage: React.FC = () => {
+const Page: React.FC = () => {
   return (
     <div style={{height:"25px",width:"20px"}}>
       <FontAwesomeIcon icon={faCoffee} />
@@ -11,4 +11,4 @@ const HomePage: React.FC = () => {
   );
 }
 
-export default HomePage;
+export default Page;
