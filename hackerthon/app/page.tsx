@@ -20,6 +20,8 @@ const EmployeeTable = () => {
   const [employees, setEmployees] = useState<Employee[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [editingEmployee, setEditingEmployee] = useState<Employee | null>(null);
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
+  const [employeeToDelete, setEmployeeToDelete] = useState<Employee | null>(null);
 
   const fetchData = async () => {
     try {
@@ -111,22 +113,34 @@ const EmployeeTable = () => {
     }
   };
 
-  const handleDeleteClick = async (employeeId: number) => {
-    try {
-      const response = await fetch(`http://localhost:3000/api/employees/${employeeId}`, {
-        method: 'DELETE',
-      });
+  const handleDeleteClick = (employee: Employee) => {
+    setEmployeeToDelete(employee);
+    setModalOpen(true);
+  };
 
-      if (response.ok) {
-        setEmployees(employees.filter(emp => emp.id !== employeeId));
-      } else {
-        console.error('Failed to delete employee');
-        setError('Failed to delete employee.');
+  const handleConfirmDelete = async () => {
+    if (employeeToDelete) {
+      try {
+        const response = await fetch(`http://localhost:3000/api/employees/${employeeToDelete.id}`, {
+          method: 'DELETE',
+        });
+
+        if (response.ok) {
+          setEmployees(employees.filter(emp => emp.id !== employeeToDelete.id));
+          setModalOpen(false);
+        } else {
+          console.error('Failed to delete employee');
+          setError('Failed to delete employee.');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        setError('Error deleting employee.');
       }
-    } catch (error) {
-      console.error('Error:', error);
-      setError('Error deleting employee.');
     }
+  };
+
+  const handleCancelDelete = () => {
+    setModalOpen(false);
   };
 
   return (
@@ -165,7 +179,7 @@ const EmployeeTable = () => {
                     </button>
                     <button
                       className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-                      onClick={() => handleDeleteClick(employee.id!)}
+                      onClick={() => handleDeleteClick(employee)}
                     >
                       Xóa
                     </button>
@@ -309,6 +323,29 @@ const EmployeeTable = () => {
           >
             Hủy
           </button>
+        </div>
+      )}
+
+      {modalOpen && employeeToDelete && (
+        <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 z-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg w-80">
+            <h2 className="text-xl font-bold mb-4">Xác nhận xóa</h2>
+            <p className="mb-4">Bạn có chắc chắn muốn xóa nhân viên {employeeToDelete.employeeName}?</p>
+            <div className="flex justify-end gap-2">
+              <button
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                onClick={handleConfirmDelete}
+              >
+                Xóa
+              </button>
+              <button
+                className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
+                onClick={handleCancelDelete}
+              >
+                Hủy
+              </button>
+            </div>
+          </div>
         </div>
       )}
     </div>
