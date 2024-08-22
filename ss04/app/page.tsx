@@ -1,12 +1,17 @@
 import React from 'react';
-import Bai1 from './bai1/page'
-import Bai2 from './contact/page'
-
+import Link from 'next/link';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import ProductDetail from './product-detail/page';
 export default function page() {
   return (
     <div>
-      <Bai1></Bai1>
-      <Bai2></Bai2>
+      đây là trang chủ
+      <Link href='/contact'></Link>
+      <BrowserRouter>
+      <Routes>
+        <Route path="/product-detail/:id" element={<ProductDetail />} />
+      </Routes>
+    </BrowserRouter>
     </div>
   )
 }
