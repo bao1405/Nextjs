@@ -255,76 +255,82 @@ const EmployeeTable = () => {
       </div>
 
       {editingEmployee && (
-        <div className="mt-4">
-          <h2 className="text-2xl font-bold mb-2">Sửa nhân viên</h2>
-          <div className="grid grid-cols-1 gap-4">
-            <div>
-              <label htmlFor="employeeName" className="block text-gray-700 text-sm font-bold mb-2">
-                Tên nhân viên:
-              </label>
-              <input
-                type="text"
-                id="employeeName"
-                name="employeeName"
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                value={editingEmployee.employeeName}
-                onChange={(e) => setEditingEmployee({...editingEmployee, employeeName: e.target.value})}
-              />
+        <div className="fixed inset-0 flex items-center justify-center z-50">
+          <div className="fixed inset-0 bg-black opacity-50"></div>
+          <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-lg z-10">
+            <h2 className="text-2xl font-bold mb-4">Sửa nhân viên</h2>
+            <div className="grid grid-cols-1 gap-4">
+              <div>
+                <label htmlFor="employeeName" className="block text-gray-700 text-sm font-bold mb-2">
+                  Tên nhân viên:
+                </label>
+                <input
+                  type="text"
+                  id="employeeName"
+                  name="employeeName"
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  value={editingEmployee.employeeName}
+                  onChange={(e) => setEditingEmployee({ ...editingEmployee, employeeName: e.target.value })}
+                />
+              </div>
+              <div>
+                <label htmlFor="dateOfBirth" className="block text-gray-700 text-sm font-bold mb-2">
+                  Ngày sinh:
+                </label>
+                <input
+                  type="date"
+                  id="dateOfBirth"
+                  name="dateOfBirth"
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  value={editingEmployee.dateOfBirth}
+                  onChange={(e) => setEditingEmployee({ ...editingEmployee, dateOfBirth: e.target.value })}
+                />
+              </div>
+              <div>
+                <label htmlFor="image" className="block text-gray-700 text-sm font-bold mb-2">
+                  Hình ảnh:
+                </label>
+                <input
+                  type="text"
+                  id="image"
+                  name="image"
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  value={editingEmployee.image}
+                  onChange={(e) => setEditingEmployee({ ...editingEmployee, image: e.target.value })}
+                />
+              </div>
+              <div>
+                <label htmlFor="email" className="block text-gray-700 text-sm font-bold mb-2">
+                  Email:
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  value={editingEmployee.email}
+                  onChange={(e) => setEditingEmployee({ ...editingEmployee, email: e.target.value })}
+                />
+              </div>
             </div>
-            <div>
-              <label htmlFor="dateOfBirth" className="block text-gray-700 text-sm font-bold mb-2">
-                Ngày sinh:
-              </label>
-              <input
-                type="date"
-                id="dateOfBirth"
-                name="dateOfBirth"
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                value={editingEmployee.dateOfBirth}
-                onChange={(e) => setEditingEmployee({...editingEmployee, dateOfBirth: e.target.value})}
-              />
-            </div>
-            <div>
-              <label htmlFor="image" className="block text-gray-700 text-sm font-bold mb-2">
-                Hình ảnh:
-              </label>
-              <input
-                type="text"
-                id="image"
-                name="image"
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                value={editingEmployee.image}
-                onChange={(e) => setEditingEmployee({...editingEmployee, image: e.target.value})}
-              />
-            </div>
-            <div>
-              <label htmlFor="email" className="block text-gray-700 text-sm font-bold mb-2">
-                Email:
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                value={editingEmployee.email}
-                onChange={(e) => setEditingEmployee({...editingEmployee, email: e.target.value})}
-              />
+            <div className="flex justify-end mt-4">
+              <button
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus-shadow-outline"
+                onClick={handleUpdateEmployee}
+              >
+                Cập nhật
+              </button>
+              <button
+                className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus-shadow-outline ml-2"
+                onClick={() => setEditingEmployee(null)}
+              >
+                Hủy
+              </button>
             </div>
           </div>
-          <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus-shadow-outline mt-4"
-            onClick={handleUpdateEmployee}
-          >
-            Cập nhật
-          </button>
-          <button
-            className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus-shadow-outline mt-4 ml-2"
-            onClick={() => setEditingEmployee(null)}
-          >
-            Hủy
-          </button>
         </div>
       )}
+
 
       {modalOpen && employeeToDelete && (
         <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 z-50">
