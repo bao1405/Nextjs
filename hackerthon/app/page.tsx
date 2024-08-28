@@ -25,7 +25,7 @@ const EmployeeTable = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get("http://localhost:3003/api/employees");
+      const response = await axios.get("http://localhost:3000/api/employees");
       console.log(response.data.employees);
 
       if (Array.isArray(response.data.employees)) {
@@ -53,7 +53,7 @@ const EmployeeTable = () => {
 
   const handleAddEmployee = async () => {
     try {
-      const response = await fetch('http://localhost:3003/api/employees', {
+      const response = await fetch('http://localhost:3000/api/employees', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -89,7 +89,7 @@ const EmployeeTable = () => {
   const handleUpdateEmployee = async () => {
     if (editingEmployee) {
       try {
-        const response = await fetch(`http://localhost:3003/api/employees/${editingEmployee.id}`, {
+        const response = await fetch(`http://localhost:3000/api/employees/${editingEmployee.id}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
@@ -121,7 +121,7 @@ const EmployeeTable = () => {
   const handleConfirmDelete = async () => {
     if (employeeToDelete) {
       try {
-        const response = await fetch(`http://localhost:3003/api/employees/${employeeToDelete.id}`, {
+        const response = await fetch(`http://localhost:3000/api/employees/${employeeToDelete.id}`, {
           method: 'DELETE',
         });
 
